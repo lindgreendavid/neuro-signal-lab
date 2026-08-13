@@ -5,8 +5,8 @@ from pathlib import Path
 ROOT = Path(__file__).parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from neuro_signal_lab.pipeline import ParticipantResult, RunResult, read_events, result_payload
 from neuro_signal_lab.fetch import EXCLUDED_RECORDINGS, parse_annex_pointer
+from neuro_signal_lab.pipeline import ParticipantResult, RunResult, read_events, result_payload
 
 
 class PipelineContractTests(unittest.TestCase):

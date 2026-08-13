@@ -5,14 +5,14 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+from collections.abc import Sequence
 from dataclasses import asdict, dataclass
 from pathlib import Path
-from typing import Sequence
+from typing import Any
 
 from .analysis import P3_WINDOW_MS, p3_contrast, summarize_contrasts, window_mean
 from .fetch import EXCLUDED_RECORDINGS
 from .metadata import MIN_STANDARD_TRIALS, MIN_TARGET_TRIALS, STANDARD_LABEL, TARGET_LABEL
-
 
 ARTIFACT_THRESHOLD_UV = 150.0
 EVENT_IDS = {TARGET_LABEL: 1, STANDARD_LABEL: 2}
@@ -53,7 +53,9 @@ def read_events(path: Path) -> tuple[list[list[int]], dict[str, int]]:
     return events, counts
 
 
-def analyze_recording(set_path: Path, threshold_uv: float = ARTIFACT_THRESHOLD_UV):
+def analyze_recording(
+    set_path: Path, threshold_uv: float = ARTIFACT_THRESHOLD_UV
+) -> tuple[Any | None, Any | None, Any | None, RunResult]:
     """Return accepted Pz epochs for one run; imports MNE only for real-data execution."""
 
     import mne
@@ -63,7 +65,10 @@ def analyze_recording(set_path: Path, threshold_uv: float = ARTIFACT_THRESHOLD_U
     event_path = set_path.with_name(f"{stem}_events.tsv")
     channel_path = set_path.with_name(f"{stem}_channels.tsv")
     events, pre_counts = read_events(event_path)
-    if pre_counts[TARGET_LABEL] < MIN_TARGET_TRIALS or pre_counts[STANDARD_LABEL] < MIN_STANDARD_TRIALS:
+    if (
+        pre_counts[TARGET_LABEL] < MIN_TARGET_TRIALS
+        or pre_counts[STANDARD_LABEL] < MIN_STANDARD_TRIALS
+    ):
         return None, None, None, RunResult(stem, 0, 0, False, "below pre-artifact trial minimum")
 
     with channel_path.open(newline="", encoding="utf-8") as handle:
@@ -116,6 +121,7 @@ def analyze_participant(
         target, standard, run_times_ms, run = analyze_recording(set_path, threshold_uv)
         runs.append(run)
         if run.eligible:
+            assert target is not None and standard is not None and run_times_ms is not None
             target_epochs.append(target)
             standard_epochs.append(standard)
             if times_ms is None:
@@ -168,14 +174,14 @@ def result_payload(
     runs: Sequence[RunResult],
     analysis: str = "confirmatory",
     threshold_uv: float = ARTIFACT_THRESHOLD_UV,
-) -> dict:
+) -> dict[str, object]:
     import numpy as np
     from scipy import stats
 
     if len(participants) < 8:
         raise ValueError("fewer than eight participants remain; confirmatory inference must stop")
     contrasts = np.asarray([participant.contrast_uv for participant in participants], dtype=float)
-    summary = summarize_contrasts(contrasts)
+    summary = summarize_contrasts(contrasts.tolist())
     test = stats.ttest_1samp(contrasts, popmean=0.0, alternative="two-sided")
     standard_error = stats.sem(contrasts)
     ci_low, ci_high = stats.t.interval(
@@ -215,7 +221,9 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--data-root", type=Path, default=Path("data/raw"))
     parser.add_argument("--output", type=Path, default=Path("data/derived/confirmatory.json"))
-    parser.add_argument("--analysis", choices=("confirmatory", "sensitivity"), default="confirmatory")
+    parser.add_argument(
+        "--analysis", choices=("confirmatory", "sensitivity"), default="confirmatory"
+    )
     parser.add_argument("--artifact-threshold-uv", type=float, default=ARTIFACT_THRESHOLD_UV)
     args = parser.parse_args()
 
