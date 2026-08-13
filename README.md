@@ -1,5 +1,9 @@
 # Neuro Signal Lab
 
+<p><a href="https://github.com/lindgreendavid/lindgreendavid/tree/main/brand"><img src="https://raw.githubusercontent.com/lindgreendavid/lindgreendavid/main/brand/lab-notes-mark.svg" width="52" align="right" alt="Lab Notes research-cycle mark"></a></p>
+
+**Part of the [Lab Notes Research Portfolio](https://blog-interactive.lindgreendavid.workers.dev/)** · Neuroscience · Question → evidence → finding → boundary
+
 An inspectable neuroscience program for asking a narrow question: **does the classic P3b
 target-minus-standard effect remain visible when the measurement is fixed in advance and applied
 to an independent public EEG dataset?**
