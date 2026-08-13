@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it and the upstream EEG datasets separately."
+title: "Neuro Signal Lab"
+type: software
+authors:
+  - family-names: Lindgreen
+    given-names: David
+version: 0.0.1
+date-released: 2026-08-13
+license: MIT
+repository-code: "https://github.com/lindgreendavid/neuro-signal-lab"
+keywords:
+  - EEG
+  - event-related potentials
+  - P3b
+  - reproducibility

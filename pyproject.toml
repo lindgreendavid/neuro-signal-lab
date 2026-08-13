@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "neuro-signal-lab"
+version = "0.0.1"
+description = "Inspectable P3b reproducibility analysis for public EEG data"
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+authors = [{ name = "David Lindgreen" }]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Topic :: Scientific/Engineering :: Information Analysis",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
