@@ -19,6 +19,13 @@ class P3EndpointTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "contains no samples"):
             window_mean([0.0, 100.0], [1.0, 2.0])
 
+    def test_window_mean_accepts_array_like_scientific_inputs(self):
+        class ArrayLike(list):
+            def __bool__(self):
+                raise ValueError("array truth is ambiguous")
+
+        self.assertEqual(window_mean(ArrayLike([300.0, 600.0]), [2.0, 4.0]), 3.0)
+
     def test_contrast_direction_is_target_minus_standard(self):
         self.assertEqual(p3_contrast(target_mean_uv=8.5, standard_mean_uv=2.0), 6.5)
 

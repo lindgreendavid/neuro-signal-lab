@@ -7,13 +7,24 @@ name = "neuro-signal-lab"
 version = "0.0.1"
 description = "Inspectable P3b reproducibility analysis for public EEG data"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 license = "MIT"
 authors = [{ name = "David Lindgreen" }]
 classifiers = [
   "Programming Language :: Python :: 3",
   "Topic :: Scientific/Engineering :: Information Analysis",
 ]
+
+[project.optional-dependencies]
+analysis = [
+  "mne[hdf5]==1.12.1",
+  "numpy>=2.0,<3",
+  "scipy>=1.14,<2",
+]
+
+[project.scripts]
+neuro-signal-fetch = "neuro_signal_lab.fetch:main"
+neuro-signal-analyze = "neuro_signal_lab.pipeline:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

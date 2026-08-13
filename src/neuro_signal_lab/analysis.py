@@ -35,7 +35,7 @@ def window_mean(
 
     if len(times_ms) != len(amplitudes_uv):
         raise ValueError("times and amplitudes must have the same length")
-    if not times_ms:
+    if len(times_ms) == 0:
         raise ValueError("at least one sample is required")
 
     start_ms, end_ms = window_ms

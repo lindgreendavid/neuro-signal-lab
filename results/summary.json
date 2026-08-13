@@ -1,0 +1,51 @@
+{
+  "dataset": "OpenNeuro ds003061 v1.1.0",
+  "analysis": "confirmatory",
+  "participants": 13,
+  "eligible_runs": 38,
+  "excluded_runs": ["sub-012_task-P300_run-1"],
+  "accepted_target_trials": 3606,
+  "accepted_standard_trials": 19481,
+  "endpoint": "Pz target-minus-standard mean amplitude, 300-600 ms",
+  "mean_contrast_uv": 5.654430064380662,
+  "median_contrast_uv": 5.570448121317635,
+  "mean_95_ci_uv": [4.8333029186256695, 6.475557210135655],
+  "t_statistic": 15.0036992838679,
+  "degrees_of_freedom": 12,
+  "two_sided_p_value": 3.875488205362116e-9,
+  "cohen_dz": 4.161277468432927,
+  "positive_participant_fraction": 1.0,
+  "participant_contrasts_uv": {
+    "sub-001": 6.729566055542422,
+    "sub-002": 5.559008866537262,
+    "sub-003": 6.762226686109616,
+    "sub-004": 5.194239498590707,
+    "sub-005": 5.984529416733808,
+    "sub-006": 5.3790377034694545,
+    "sub-007": 3.7436815837636592,
+    "sub-008": 5.8649346838006595,
+    "sub-009": 5.570448121317635,
+    "sub-010": 8.717752283884952,
+    "sub-011": 5.0802735923580356,
+    "sub-012": 3.215318601604375,
+    "sub-013": 5.70657374323602
+  },
+  "artifact_sensitivity": {
+    "100_uv": {
+      "mean_contrast_uv": 5.826918840711641,
+      "mean_95_ci_uv": [4.892558732386355, 6.761278949036926],
+      "two_sided_p_value": 1.1974347133847013e-8
+    },
+    "200_uv": {
+      "mean_contrast_uv": 5.738352118840938,
+      "mean_95_ci_uv": [4.824730451194218, 6.651973786487656],
+      "two_sided_p_value": 1.1045643949619192e-8
+    }
+  },
+  "software": {
+    "python": "3.12.13",
+    "mne": "1.12.1",
+    "numpy": "2.5.2",
+    "scipy": "1.18.0"
+  }
+}

@@ -1,8 +1,10 @@
 # Draft confirmatory protocol
 
-This document is deliberately marked **draft**. It becomes frozen only after a metadata-only audit
-of OpenNeuro `ds003061` version `1.1.0` confirms event labels, run meanings, channel availability,
-and usable participant count. The audit must not inspect target-minus-standard amplitudes.
+Status: **frozen 2026-08-13 before any EEG amplitude or target-minus-standard result was inspected.**
+
+The metadata-only audit of OpenNeuro `ds003061` version `1.1.0` confirmed event labels, run
+semantics, channel availability, and the nominal participant count. Amendments must be timestamped,
+justified without reference to a favorable result, and never silently replace this protocol.
 
 ## Confirmatory estimand
 
@@ -28,17 +30,24 @@ and standardized effect size will be reported even when the test is not signific
 - Measurement: arithmetic mean from 300 to 600 ms, inclusive.
 - Contrast: target minus standard.
 
-## Pending metadata-only decisions
+## Frozen external-dataset decisions
 
-1. Which run is baseline and eligible for the confirmatory analysis.
-2. Exact BIDS event values corresponding to target and standard stimuli.
-3. Whether Pz is present under that exact channel name in every eligible recording.
-4. Bad-channel, bad-epoch, eye-artifact, filtering, and rereferencing rules compatible with the
-   source format.
-5. Deterministic participant exclusions based only on missingness and prespecified data quality.
-
-If any of these cannot be resolved without looking at the effect, the confirmatory study stops and
-the project reports the dataset as unsuitable rather than silently changing the question.
+- Use all three runs, which the dataset README describes as identical sessions. Pool accepted
+  epochs within condition and participant; never treat runs or trials as independent participants.
+- Target events are `oddball_with_reponse`; standard events are `standard`. These are the upstream
+  labels for correct target and correct non-target trials. Incorrect or ambiguous events are not
+  reclassified.
+- Require Pz in every included run; the audit found it in all 39 channel tables.
+- Keep EEG channels only, apply a 50 Hz notch, a zero-phase 0.1–30 Hz band-pass filter, and an
+  average EEG reference. Epoch from -200 through 800 ms and baseline-correct from -200 through 0 ms.
+- Reject an epoch if its Pz peak-to-peak range exceeds 150 microvolts. Report sensitivity analyses
+  at 100 and 200 microvolts; these do not replace the confirmatory result.
+- A run must retain at least 20 correct target epochs and 100 correct standard epochs after artifact
+  rejection. A participant must contribute at least one eligible run. The same thresholds apply
+  before and after artifact rejection. This metadata rule excludes the visibly truncated
+  `sub-012/run-1` before signal inspection.
+- If fewer than eight participants remain, stop the confirmatory test and publish only a data-
+  suitability report.
 
 ## Planned inference and reporting
 
@@ -52,6 +61,9 @@ the project reports the dataset as unsuitable rather than silently changing the 
 
 No optional stopping is allowed. The available eligible participants in the pinned dataset form the
 sample; no power-based claim will be made after seeing the result.
+
+The primary test is run once at the frozen settings. Exploratory analyses and sensitivity checks
+must be generated in a separate output namespace so they cannot overwrite the confirmatory result.
 
 ## Interactive boundary
 

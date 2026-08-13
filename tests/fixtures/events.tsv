@@ -1,0 +1,5 @@
+onset	duration	sample	trial_type	value
+1.0	0	256	stimulus	standard
+2.0	0	512	stimulus	oddball_with_reponse
+3.0	0	768	stimulus	oddball
+4.0	0	1024	response	response

@@ -1,6 +1,6 @@
 # Research scope
 
-Status: **source-grounded candidate selected; external event audit pending**
+Status: **external metadata audited; confirmatory protocol frozen before EEG inspection**
 Date: 2026-08-13
 
 ## Bounded question
@@ -22,10 +22,19 @@ the site and time window from being selected for a favorable result.
 ## Candidate external evidence
 
 OpenNeuro snapshot `ds003061` version `1.1.0` is a CC0, BIDS-formatted auditory oddball EEG dataset
-with 13 participants, 39 recordings, 79 recorded channels, and a 256 Hz sampling rate. It is small,
-so uncertainty and participant-level results must remain prominent. Run semantics and the exact
-standard/oddball event mapping are blocking audit items; no confirmatory analysis should run until
-they are documented from the versioned sidecars.
+with 13 participants, three documented identical runs per participant, 64 EEG channels (79 recorded
+channels including auxiliary signals), and a 256 Hz sampling rate. It is small, so uncertainty and
+participant-level results must remain prominent.
+
+The metadata-only audit used the version tag `1.1.0` at Git commit
+`223a18423a57d00dd1fb1fc3ac088b9d54c1e1e6`. Pz exists in all 39 channel tables. The dataset's own
+HED definitions identify `oddball_with_reponse` as a correct target event and `standard` as a
+correct non-target event. The misspelling of “response” is part of the upstream label and is kept
+verbatim. Across all runs, the sidecars contain 3,667 correct target events and 19,855 correct
+standard events. `sub-012/run-1` is visibly truncated in metadata (9 correct targets and 64 correct
+standards), which motivated the run-level minimum trial rule before EEG amplitudes were inspected.
+The later fetch validation also found that its 8,025,984-byte S3 object conflicts with the
+63,026,728-byte Git-annex pointer; this strengthens the exclusion but did not create it.
 
 ## Primary sources
 

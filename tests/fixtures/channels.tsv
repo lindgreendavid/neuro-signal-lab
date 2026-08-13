@@ -1,0 +1,4 @@
+name	type	units
+Fz	EEG	microV
+Pz	EEG	microV
+Resp	RESP	n/a
