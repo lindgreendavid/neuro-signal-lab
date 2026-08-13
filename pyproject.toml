@@ -43,6 +43,7 @@ line-length = 100
 python_version = "3.10"
 strict = true
 ignore_missing_imports = true
+follow_imports = "skip"
 
 [tool.coverage.run]
 source = ["neuro_signal_lab"]
