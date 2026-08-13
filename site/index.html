@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Explore the fixed P3b endpoint, participant-level EEG contrasts, uncertainty, and sensitivity analyses from Neuro Signal Lab." />
+    <title>Neuro Signal Lab — an inspectable EEG result</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Neuro Signal Lab home"><span>NS</span>Neuro Signal Lab</a>
+      <nav aria-label="Main navigation">
+        <a href="#result">Result</a><a href="#participants">Participants</a><a href="#method">Method</a>
+        <a href="https://github.com/lindgreendavid/neuro-signal-lab">Source</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Public EEG · fixed endpoint · honest limits</p>
+          <h1>A brain signal you can inspect.</h1>
+          <p class="lede">Does a classic posterior target response survive when the measurement is chosen in advance and applied to an independent auditory dataset?</p>
+          <div class="hero-actions"><a class="button primary" href="#participants">Explore the evidence</a><a class="button" href="https://github.com/lindgreendavid/neuro-signal-lab/blob/main/docs/research-report.md">Read the report</a></div>
+        </div>
+        <div class="signal-card" aria-label="Stylised P3b measurement diagram">
+          <div class="head"><span class="electrode">Pz</span><i></i><i></i><i></i><i></i><i></i></div>
+          <svg viewBox="0 0 520 180" role="img" aria-label="Illustration of a target waveform rising above a standard waveform in the fixed 300 to 600 millisecond interval">
+            <rect x="225" y="18" width="180" height="132" rx="8" class="window" />
+            <path class="standard" d="M10 112 C60 108 80 118 125 108 S190 118 225 105 S285 105 335 108 S415 104 510 110" />
+            <path class="target" d="M10 112 C60 108 80 118 125 108 S190 118 225 101 C270 55 330 43 405 88 S470 105 510 110" />
+            <text x="226" y="170">300 ms</text><text x="376" y="170">600 ms</text>
+          </svg>
+          <p><span class="target-key"></span> target <span class="standard-key"></span> standard <small>illustrative shape, not recorded waveform</small></p>
+        </div>
+      </section>
+
+      <section class="result" id="result">
+        <div><p class="eyebrow">Confirmatory result</p><h2>The fixed effect survived.</h2><p>All 13 participants showed a positive target-minus-standard contrast at Pz from 300–600 ms.</p></div>
+        <dl class="metrics">
+          <div><dt>Mean contrast</dt><dd>+5.65 <small>µV</small></dd></div>
+          <div><dt>95% confidence interval</dt><dd>+4.83–6.48 <small>µV</small></dd></div>
+          <div><dt>Positive participants</dt><dd>13 / 13</dd></div>
+          <div><dt>Two-sided test</dt><dd><em>p</em> = 3.88×10<sup>−9</sup></dd></div>
+        </dl>
+      </section>
+
+      <section class="explorer" id="participants">
+        <div class="section-heading"><div><p class="eyebrow">Participant explorer</p><h2>One mean. Thirteen people.</h2></div><p>Hover or focus a mark to inspect the participant-level unit of inference. Trials are pooled within people, never counted as independent people.</p></div>
+        <div class="chart-shell">
+          <div class="chart-controls"><button id="sort-button" type="button">Sort by effect</button><p id="chart-summary" aria-live="polite"></p></div>
+          <div id="participant-chart" class="participant-chart" role="list" aria-label="Participant target-minus-standard contrasts"></div>
+          <div class="axis" aria-hidden="true"><span>0</span><span>2</span><span>4</span><span>6</span><span>8</span><span>10 µV</span></div>
+        </div>
+      </section>
+
+      <section class="sensitivity">
+        <div class="section-heading"><div><p class="eyebrow">Sensitivity analysis</p><h2>Change the artifact threshold.</h2></div><p>This control switches among three prespecified analyses. It does not alter the confirmatory 150 µV endpoint.</p></div>
+        <div class="sensitivity-panel">
+          <fieldset><legend>Pz peak-to-peak rejection threshold</legend><div class="segmented" id="threshold-control"><button data-threshold="100" type="button">100 µV</button><button class="active" data-threshold="150" type="button">150 µV · fixed</button><button data-threshold="200" type="button">200 µV</button></div></fieldset>
+          <div class="interval-plot" aria-label="Confidence interval compared with the null value of zero"><span class="zero">0</span><div class="interval" id="interval"><i id="interval-dot"></i></div><span>8 µV</span></div>
+          <p id="threshold-result" class="threshold-result" aria-live="polite"></p>
+        </div>
+      </section>
+
+      <section class="method" id="method">
+        <div class="section-heading"><div><p class="eyebrow">Evidence path</p><h2>From question to boundary.</h2></div><p>Every number on this page traces back to the pinned public dataset and machine-readable result.</p></div>
+        <ol class="method-grid">
+          <li><span>01</span><h3>Fix the endpoint</h3><p>Pz, 300–600 ms, target minus standard, participant-level inference.</p></li>
+          <li><span>02</span><h3>Pin the evidence</h3><p>OpenNeuro ds003061 v1.1.0, checksum-verified before analysis.</p></li>
+          <li><span>03</span><h3>Audit exclusions</h3><p>38 eligible runs; one frozen metadata exclusion remains visible.</p></li>
+          <li><span>04</span><h3>Stop at the boundary</h3><p>Cross-paradigm robustness—not diagnosis, localization, or mind reading.</p></li>
+        </ol>
+      </section>
+
+      <section class="boundary"><p class="eyebrow">Scientific boundary</p><h2>Strong evidence for a narrow claim.</h2><p>The result supports a posterior target enhancement in this independent auditory sample. It does not show that auditory and visual oddball tasks are identical, identify one brain generator, or establish a clinical tool.</p><div class="links"><a href="https://github.com/lindgreendavid/neuro-signal-lab/blob/main/docs/protocol.md">Frozen protocol</a><a href="https://github.com/lindgreendavid/neuro-signal-lab/blob/main/docs/research-report.md">Full report</a><a href="https://github.com/lindgreendavid/neuro-signal-lab/blob/main/results/summary.json">Machine-readable result</a></div></section>
+    </main>
+
+    <footer><p>Neuro Signal Lab · David Lindgreen · MIT-licensed code</p><p>Educational reproducibility study, not a medical device.</p></footer>
+  </body>
+</html>
