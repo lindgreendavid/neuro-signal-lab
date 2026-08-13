@@ -8,6 +8,8 @@ An inspectable neuroscience program for asking a narrow question: **does the cla
 target-minus-standard effect remain visible when the measurement is fixed in advance and applied
 to an independent public EEG dataset?**
 
+**[Open the interactive Neuro Signal Lab](https://lindgreendavid.github.io/neuro-signal-lab/)**
+
 The first study is deliberately staged. ERP CORE supplies the literature-anchored measurement
 definition (Pz, mean voltage from 300–600 ms after stimulus onset). OpenNeuro `ds003061` is the
 candidate external auditory-oddball dataset. No external result has been calculated yet, and the
