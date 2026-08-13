@@ -1,7 +1,6 @@
 import unittest
 from pathlib import Path
 
-
 ROOT = Path(__file__).parents[1]
 
 
@@ -22,7 +21,7 @@ class InteractiveSiteTests(unittest.TestCase):
 
     def test_all_participant_results_are_embedded(self):
         for participant in range(1, 14):
-            self.assertIn(f'sub-{participant:03d}', self.javascript)
+            self.assertIn(f"sub-{participant:03d}", self.javascript)
 
     def test_confirmatory_and_sensitivity_thresholds_are_available(self):
         for threshold in (100, 150, 200):

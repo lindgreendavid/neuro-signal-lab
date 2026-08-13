@@ -6,8 +6,7 @@ import csv
 import json
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Iterable
-
+from typing import cast
 
 TARGET_LABEL = "oddball_with_reponse"
 STANDARD_LABEL = "standard"
@@ -24,8 +23,7 @@ class RunAudit:
     @property
     def eligible_before_artifact_rejection(self) -> bool:
         return (
-            self.target_trials >= MIN_TARGET_TRIALS
-            and self.standard_trials >= MIN_STANDARD_TRIALS
+            self.target_trials >= MIN_TARGET_TRIALS and self.standard_trials >= MIN_STANDARD_TRIALS
         )
 
 
@@ -52,10 +50,10 @@ def pz_is_eeg_channel(path: Path) -> bool:
         return any(row.get("name") == "Pz" and row.get("type") == "EEG" for row in reader)
 
 
-def load_frozen_audit(path: Path) -> dict:
+def load_frozen_audit(path: Path) -> dict[str, object]:
     """Load the committed audit and refuse any audit that inspected signal."""
 
-    audit = json.loads(path.read_text(encoding="utf-8"))
+    audit = cast(dict[str, object], json.loads(path.read_text(encoding="utf-8")))
     if audit.get("signal_inspected_during_audit") is not False:
         raise ValueError("metadata audit must explicitly record that signal was not inspected")
     return audit

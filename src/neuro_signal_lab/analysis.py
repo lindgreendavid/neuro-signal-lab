@@ -6,10 +6,9 @@ pure makes it possible to test the scientific contract before any research data 
 
 from __future__ import annotations
 
+from collections.abc import Sequence
 from dataclasses import dataclass
 from statistics import mean, median, stdev
-from typing import Sequence
-
 
 P3_WINDOW_MS = (300.0, 600.0)
 
@@ -43,9 +42,7 @@ def window_mean(
         raise ValueError("window start must not exceed window end")
 
     selected = [
-        amplitude
-        for time, amplitude in zip(times_ms, amplitudes_uv)
-        if start_ms <= time <= end_ms
+        amplitude for time, amplitude in zip(times_ms, amplitudes_uv) if start_ms <= time <= end_ms
     ]
     if not selected:
         raise ValueError("the requested window contains no samples")

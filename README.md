@@ -10,11 +10,12 @@ to an independent public EEG dataset?**
 
 **[Open the interactive Neuro Signal Lab](https://lindgreendavid.github.io/neuro-signal-lab/)**
 
-The first study is deliberately staged. ERP CORE supplies the literature-anchored measurement
-definition (Pz, mean voltage from 300–600 ms after stimulus onset). OpenNeuro `ds003061` is the
-candidate external auditory-oddball dataset. No external result has been calculated yet, and the
-protocol will not be frozen until its BIDS event labels and run semantics have been audited without
-looking at the confirmatory contrast.
+**Stable product release:** [v1.0.0](https://github.com/lindgreendavid/neuro-signal-lab/releases/tag/v1.0.0).
+The endpoint and analysis were frozen before the confirmatory result; v1.0.0 stabilizes the
+research product and does not retrospectively change that study.
+
+ERP CORE supplies the literature-anchored measurement definition (Pz, mean voltage from 300–600
+ms after stimulus onset). OpenNeuro `ds003061` supplies the independent auditory-oddball dataset.
 
 ## Current status
 

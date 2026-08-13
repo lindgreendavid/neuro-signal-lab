@@ -8,7 +8,6 @@ import re
 import urllib.request
 from pathlib import Path
 
-
 DATASET = "ds003061"
 VERSION_COMMIT = "223a18423a57d00dd1fb1fc3ac088b9d54c1e1e6"
 RAW_GITHUB = f"https://raw.githubusercontent.com/OpenNeuroDatasets/{DATASET}/{VERSION_COMMIT}"

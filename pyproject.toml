@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "neuro-signal-lab"
-version = "0.0.1"
+version = "1.0.0"
 description = "Inspectable P3b reproducibility analysis for public EEG data"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -21,6 +21,12 @@ analysis = [
   "numpy>=2.0,<3",
   "scipy>=1.14,<2",
 ]
+dev = [
+  "build>=1.2",
+  "coverage[toml]>=7.6",
+  "mypy>=1.13",
+  "ruff>=0.8",
+]
 
 [project.scripts]
 neuro-signal-fetch = "neuro_signal_lab.fetch:main"
@@ -28,3 +34,18 @@ neuro-signal-analyze = "neuro_signal_lab.pipeline:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+ignore_missing_imports = true
+
+[tool.coverage.run]
+source = ["neuro_signal_lab"]
+
+[tool.coverage.report]
+fail_under = 50
