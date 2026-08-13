@@ -21,16 +21,20 @@ looking at the confirmatory contrast.
   95% CI **[+4.83, +6.48]**, with all 13 participant contrasts positive. Read the
   [research report](docs/research-report.md) for the exact inference and boundaries.
 
-## Planned interactive experience
+## Interactive experience
 
-The public laboratory will let a visitor:
+The static laboratory in [`site/`](site/) lets a visitor:
 
-1. compare target and standard waveforms without changing the preregistered endpoint;
-2. move a *clearly labelled exploratory* time window and see why analytic flexibility matters;
-3. inspect every participant-level contrast and uncertainty interval;
-4. compare the visual ERP CORE anchor with the independent auditory dataset while keeping the
-   paradigm difference visible;
+1. inspect the fixed Pz, 300–600 ms endpoint without changing it;
+2. explore every participant-level contrast rather than seeing only a group mean;
+3. compare the confirmatory artifact threshold with both prespecified sensitivity analyses;
+4. keep the visual ERP CORE anchor and independent auditory dataset conceptually distinct;
 5. trace each displayed value back to data version, preprocessing decision, and code.
+
+Open [`site/index.html`](site/index.html) directly or serve the repository root with any static web
+server. The interface is dependency-free, responsive, keyboard-accessible, and uses only committed
+machine-readable results. Its waveform graphic is explicitly labelled as an illustration because
+the repository does not publish a time-series aggregate.
 
 ## Development
 
