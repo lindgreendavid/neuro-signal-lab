@@ -7,7 +7,7 @@ participants in OpenNeuro `ds003061` showed a positive correct-target-minus-corr
 contrast at Pz from 300 to 600 ms; the participant-level mean was **+5.65 µV**, 95% CI
 **[+4.83, +6.48]**, *t*(12) = 15.00, two-sided *p* = 3.88 × 10⁻⁹, Cohen's *dz* = 4.16.
 
-This is best described as a **cross-paradigm robustness confirmation**, not a literal direct
+This is best described as **cross-paradigm robustness evidence**, not a literal direct
 replication: ERP CORE used an active visual oddball task, whereas the external dataset used an
 active auditory three-stimulus oddball task.
 

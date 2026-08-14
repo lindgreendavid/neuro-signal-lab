@@ -1,5 +1,10 @@
 # Changelog
 
+## [Unreleased]
+
+- Describe the external P3b result as cross-paradigm robustness evidence rather than a
+  confirmation, preserving the frozen endpoint and result.
+
 ## [1.0.0] - 2026-08-13
 
 - Stabilize the reproduced P3b research product without changing its frozen endpoint or result.
