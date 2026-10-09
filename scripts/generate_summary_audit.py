@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Generate the POST-HOC participant-level recomputation (requires the `analysis` extra)."""
 
 from __future__ import annotations
