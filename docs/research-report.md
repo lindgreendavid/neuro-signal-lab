@@ -96,3 +96,11 @@ SciPy 1.18.0.
 3. Pernet CR et al. *EEG-BIDS, an extension to the brain imaging data structure for
    electroencephalography.* Scientific Data 6 (2019), 103.
    <https://doi.org/10.1038/s41597-019-0104-8>
+
+## Post-hoc recomputation (2026-10-09)
+
+Not preregistered; the frozen result is unchanged. `src/neuro_signal_lab/summary_audit.py` recomputes every reported statistic
+from the 13 stored participant contrasts and matches the report exactly (largest difference 0). It adds: Hedges' g = 3.896;
+a noncentral-t 95% interval for dz of 2.424 to 5.883; an exact sign-flip permutation p = 0.000244; leave-one-participant-out
+means of +5.399 to +5.858 µV (smallest t 13.77); and a 95% prediction interval for a new participant of +2.58 to +8.73 µV
+(`results/post-release-summary-audit.json`). The raw EEG was not re-run in this audit.

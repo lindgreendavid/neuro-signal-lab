@@ -1,0 +1,46 @@
+{
+  "label": "POST-HOC (not preregistered): recomputation from participant-level contrasts",
+  "max_abs_difference_from_reported": 0.0,
+  "recomputed": {
+    "cohen_dz": 4.161277468432927,
+    "cohen_dz_95_ci_noncentral_t": [
+      2.4236637224149282,
+      5.883177437965961
+    ],
+    "df": 12,
+    "hedges_gz": 3.8956640130010385,
+    "leave_one_out": {
+      "largest_mean_uv": 5.857689352945353,
+      "largest_p": 2.793014571219618e-08,
+      "smallest_mean_uv": 5.399153212755304,
+      "smallest_t": 13.77098684831297
+    },
+    "mean_95_ci_uv": [
+      4.8333029186256695,
+      6.475557210135655
+    ],
+    "mean_uv": 5.654430064380662,
+    "n": 13,
+    "p_two_sided": 3.875488205362116e-09,
+    "prediction_interval_95_new_participant_uv": [
+      2.5820536139858907,
+      8.726806514775433
+    ],
+    "sd_uv": 1.3588207244709478,
+    "sign_flip_exact_p_two_sided": 0.000244140625,
+    "t": 15.0036992838679,
+    "wilcoxon_p": 0.000244140625,
+    "wilcoxon_statistic": 0.0
+  },
+  "reported": {
+    "cohen_dz": 4.161277468432927,
+    "mean_95_ci_uv": [
+      4.8333029186256695,
+      6.475557210135655
+    ],
+    "mean_uv": 5.654430064380662,
+    "p_two_sided": 3.875488205362116e-09,
+    "t": 15.0036992838679
+  },
+  "schema_version": 1
+}

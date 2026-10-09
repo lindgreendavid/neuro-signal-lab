@@ -1,0 +1,117 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue!50!black,urlcolor=blue!50!black,citecolor=blue!50!black}
+
+\title{A Fixed P3b Endpoint Carries Over to an\\
+Independent Auditory Oddball Dataset:\\
+A Preregistered Cross-Paradigm Robustness Test}
+\author{David Lindgreen}
+\date{October 9, 2026 \\[2pt] \small Version 0.1.0 \quad Preprint, not peer reviewed}
+
+\emergencystretch=3em
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The P3b is among the most studied event-related potentials, but a measurement chosen after seeing data can find an effect
+almost anywhere on the scalp. We therefore fixed one endpoint in advance, the mean voltage at Pz from 300 to 600\,ms after
+stimulus onset recommended by ERP CORE~\cite{kappenman2021}, with its contrast direction, participant-level unit of
+inference, artifact threshold and stopping rule, before inspecting any amplitude in an independent dataset: the auditory
+three-stimulus oddball task of OpenNeuro \texttt{ds003061}~\cite{delorme2021}. All 13 participants showed a positive
+correct-target-minus-correct-standard contrast; the mean was $+5.65\,\mu$V (95\% interval 4.83 to 6.48),
+$t(12)=15.00$, two-sided $p=3.9\times10^{-9}$, Cohen's $d_z=4.16$, unchanged across three artifact thresholds. Recomputing every
+statistic from the 13 stored participant contrasts reproduces the report exactly and adds small-sample quantities: an exact
+sign-flip $p=2.4\times10^{-4}$, a noncentral-$t$ interval for $d_z$ of 2.42 to 5.88, and a 95\% prediction interval for a new
+participant of $+2.58$ to $+8.73\,\mu$V. This is cross-paradigm robustness evidence, not a direct replication.
+\end{abstract}
+
+\section{Question}
+Does the classic P3b target enhancement survive when the measurement is fixed in advance and applied to an independent public
+EEG dataset with a different sensory modality? ERP CORE used an active visual oddball task; the external dataset used an
+active auditory oddball task~\cite{pernet2019}. The test is therefore a robustness check of a fixed endpoint, not a literal replication.
+
+\section{Preregistered design}
+The endpoint was frozen before any EEG amplitude was inspected: electrode Pz, mean voltage 300 to 600\,ms post-stimulus, contrast
+correct targets minus correct standards, one contrast per participant (trials are pooled within participant, never treated as
+independent people), a $150\,\mu$V peak-to-peak artifact rule, and a minimum of 20 correct targets and 100 correct standards per
+run. The dataset metadata was audited at a pinned commit without inspecting signals: all 39 channel tables contain Pz, sampling is
+256\,Hz throughout, and there are three runs per participant. One visibly truncated recording (\texttt{sub-012} run 1) failed the
+frozen minimum before any signal analysis and was excluded; the participant remained through runs 2 and 3. The 38 eligible runs
+contributed 3{,}606 accepted target and 19{,}481 accepted standard epochs.
+
+\section{Confirmatory result}
+\begin{table}[h]
+\centering\small
+\begin{tabular}{lr}
+\toprule
+Quantity & Estimate\\
+\midrule
+Participants & 13\\
+Mean target-minus-standard contrast & $+5.654\,\mu$V\\
+Median contrast & $+5.570\,\mu$V\\
+95\% interval for the mean & $+4.833$ to $+6.476\,\mu$V\\
+Two-sided one-sample test & $t(12)=15.004$, $p=3.88\times10^{-9}$\\
+Cohen's $d_z$ & 4.161\\
+Positive participant contrasts & 13/13 (range $+3.22$ to $+8.72\,\mu$V)\\
+Wilcoxon sensitivity & $W=0$, $p=0.000244$\\
+\bottomrule
+\end{tabular}
+\caption{Preregistered confirmatory result at Pz, 300--600\,ms.}
+\end{table}
+The prespecified artifact-threshold sensitivity leaves the conclusion unchanged: 100\,$\mu$V gives $+5.827$ (4.893 to 6.761);
+150\,$\mu$V (confirmatory) $+5.654$; 200\,$\mu$V $+5.738$ (4.825 to 6.652), with all 13 participants retained in each.
+
+\section{Post-hoc recomputation from participant contrasts}
+Because the endpoint is one number per participant, every reported statistic can be recomputed exactly from the 13 stored contrasts,
+without the raw EEG. We did so as an independent check, and added quantities suited to $n=13$. Not preregistered; all reported.
+\begin{table}[h]
+\centering\small
+\begin{tabular}{lr}
+\toprule
+Quantity & Value\\
+\midrule
+Largest difference from the reported mean, $t$, $d_z$ and interval & 0\\
+Hedges' small-sample $g_z$~\cite{hedges1981} & 3.896\\
+Noncentral-$t$ 95\% interval for $d_z$ & 2.424 to 5.883\\
+Exact sign-flip permutation $p$ (two-sided, $2^{13}$ patterns) & 0.000244\\
+Leave-one-participant-out mean range & $+5.399$ to $+5.858\,\mu$V\\
+Leave-one-out smallest $t$ / largest $p$ & 13.77 / $2.8\times10^{-8}$\\
+95\% prediction interval, a new participant & $+2.58$ to $+8.73\,\mu$V\\
+\bottomrule
+\end{tabular}
+\caption{Recomputation from the participant-level contrasts (\texttt{results/summary.json}).}
+\end{table}
+
+\section{Discussion and limits}
+The effect is large, present in every participant, and not driven by any single person or artifact threshold. The prediction interval
+excludes zero under a normality assumption, a statement about a new draw from this population rather than about all auditory
+oddball studies. What the result supports is narrow: a fixed posterior 300--600\,ms target enhancement appears in an independent,
+small auditory dataset despite a change of modality and paradigm, which a post-hoc search of the scalp could not demonstrate. It does
+not show that visual and auditory oddball tasks engage identical processes, localize a generator, or support any diagnostic or
+individual-prediction use. The sample is 13 people. The recomputation here starts from the stored participant contrasts; it did not
+re-run signal processing from the raw EEG, whose download and preprocessing are specified in the repository and verified there
+by checksums.
+
+\section*{Reproducibility and AI assistance}
+Code, protocol, metadata audit, results and tests:\\
+\url{https://github.com/lindgreendavid/neuro-signal-lab}\\
+Interactive laboratory:\\
+\url{https://lindgreendavid.github.io/neuro-signal-lab/}\\
+The analysis code, tests and drafts of this text were produced with substantial assistance from an AI system (Claude, Anthropic);
+the author is responsible for the content.
+
+\begin{thebibliography}{9}
+\bibitem{kappenman2021} E.~S. Kappenman, J.~L. Farrens, W.~Zhang, A.~X. Stewart, S.~J. Luck, ERP CORE: An open resource for
+human event-related potential research, \emph{NeuroImage} \textbf{225}, 117465 (2021).
+\bibitem{delorme2021} A.~Delorme, EEG data from an auditory oddball task, OpenNeuro \texttt{ds003061} v1.1.0,
+doi:10.18112/openneuro.ds003061.v1.1.0.
+\bibitem{pernet2019} C.~R. Pernet et al., EEG-BIDS, an extension to the brain imaging data structure for electroencephalography,
+\emph{Sci. Data} \textbf{6}, 103 (2019).
+\bibitem{hedges1981} L.~V. Hedges, Distribution theory for Glass's estimator of effect size and related estimators,
+\emph{J. Educ. Stat.} \textbf{6}, 107--128 (1981).
+\end{thebibliography}
+\end{document}

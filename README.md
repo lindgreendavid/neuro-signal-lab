@@ -17,6 +17,8 @@ research product and does not retrospectively change that study.
 ERP CORE supplies the literature-anchored measurement definition (Pz, mean voltage from 300–600
 ms after stimulus onset). OpenNeuro `ds003061` supplies the independent auditory-oddball dataset.
 
+**Paper:** [A Fixed P3b Endpoint Carries Over (PDF)](paper/paper.pdf) · [citation and status](paper/README.md) · [version history](history.md)
+
 ## Current status
 
 - Research question selected from primary sources.
